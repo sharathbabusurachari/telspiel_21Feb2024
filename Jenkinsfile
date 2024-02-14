@@ -25,7 +25,7 @@ pipeline {
                         then echo "Application is NOT running & we're starting now...";
                         else echo "Application is already running & hence killing previous pid :"$status;
                         kill -9 $status;
-                                if [[ "$?" == 0 ]]; then echo "Previous instance of the Application has been stopped successfully";
+                                if [ "$?" == 0 ]; then echo "Previous instance of the Application has been stopped successfully";
                                         else echo "Failed to stop previous instance of the Application"; exit 1;
                                 fi
                 fi
