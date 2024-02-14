@@ -12,7 +12,7 @@ if [ -z "$status" ];
         else echo "Application deployment failed"; exit 1; fi
 
 else
-        echo "Application is already running & hence killing previous pid :";
+        echo " ;
         kill -9 $status;
         if [[ "$?" == 0 ]]; then echo "Previous instance of the Application has been stopped successfully";
                 else echo "Failed to stop previous instance of the Application"; exit 1;
