@@ -9,7 +9,7 @@ pipeline {
                 script {
                     sh "mvn clean install"
                     def process = background {
-                        sh 'nohup java -jar $WORKSPACE/target/telspiel-0.0.1-SNAPSHOT.jar > output.log 2>&1 &'
+                        sh 'java -jar $WORKSPACE/target/telspiel-0.0.1-SNAPSHOT.jar > output.log 2>&1'
                        }
                     }
                 }
