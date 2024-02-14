@@ -23,7 +23,7 @@ pipeline {
                 status=`ps -ef | grep telspiel | grep jar | awk '{print $2}'`
                 if [ -z "$status" ];
                         then echo "Application is NOT running & we're starting now...";
-                        else echo "Deployment is Successful...";
+                        else echo "Application is already running & hence killing previous pid :"$status;
                 fi
                 '''
                 script {
