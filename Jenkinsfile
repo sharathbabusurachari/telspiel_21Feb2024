@@ -51,7 +51,6 @@ pipeline {
             testResults: '*test-reports/.xml'
                 )
             }
-
     }
 
 }
