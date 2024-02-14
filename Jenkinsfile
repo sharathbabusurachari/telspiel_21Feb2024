@@ -6,30 +6,20 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Build and Run JAR') {
             steps {
                 echo 'Building the env using pipeline'
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/sharathbabusurachari/telspiel']])
-                sh "mvn -Dmaven.test.failure.ignore=true clean package"
-            }}
+                script {
+                    sh "mvn clean install"
+                    sh 'nohup java -jar $WORKSPACE/target/telspiel-0.0.1-SNAPSHOT.jar > output.log 2>&1 &'
+                    }
+                }
+            }
         stage('Test') {
             steps {
                 echo 'Testing the env using pipeline'
             }}
-        stage('Deploy') {
-            steps {
-                echo 'Deploying the env using pipeline'
-                sh '''
-                chmod 755 $WORKSPACE/javadeploy.sh;
-                bash $WORKSPACE/javadeploy.sh;
-                status=`ps -ef | grep telspiel | grep jar | awk '{print $2}'`
-
-                if [ -z "$status" ];
-                        then echo "Deployment is unsuccessful...";
-                        else echo "Deployment is Successful...";
-                fi
-                '''}
-                }
             }
 
     post {
