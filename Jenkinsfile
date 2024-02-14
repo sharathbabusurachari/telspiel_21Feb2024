@@ -9,7 +9,7 @@ pipeline {
                 script {
                     sh "mvn clean install"
                     withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
-                                        sh "nohup java -jar telspiel-0.0.1-SNAPSHOT.jar &"
+                                        sh "nohup java -jar $WORKSPACE/target/telspiel-0.0.1-SNAPSHOT.jar &"
                                     }
                     }
                 }
