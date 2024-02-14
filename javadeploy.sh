@@ -5,7 +5,7 @@ status=`ps -ef | grep telspiel | grep jar | awk '{print $2}'`
 if [ -z "$status" ];
         then
         echo "Application is NOT running & we're starting now...";
-        chmod 755 $WORKSPACE/target/telspiel-0.0.1-SNAPSHOT.war;
+        chmod 755 $WORKSPACE/target/telspiel-0.0.1-SNAPSHOT.jar;
         nohup java -war $WORKSPACE/target/telspiel-0.0.1-SNAPSHOT.jar &
         echo "Done..";
         if [[ "$?" == 0 ]]; then echo "Application has been started successfully with PID :"; echo `ps -ef | grep telspiel | grep jar | awk '{print $2}'`;
